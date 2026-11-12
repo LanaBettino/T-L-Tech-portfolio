@@ -79,6 +79,7 @@ const modalDescription = document.getElementById('modalDescription');
 const modalType = document.getElementById('modalType');
 const modalTech = document.getElementById('modalTech');
 const modalLink = document.getElementById('modalLink');
+const modalInstagram = document.getElementById('modalInstagram');
 let lastFocusedProject = null;
 
 function openProject(project) {
@@ -92,6 +93,10 @@ function openProject(project) {
   modalTech.innerHTML = (project.dataset.tech || '').split(',').filter(Boolean)
     .map(tech => `<b>${tech.trim().replace(/[&<>"']/g, '')}</b>`).join('');
   modalLink.href = project.dataset.link || '#';
+  if (modalInstagram) {
+    modalInstagram.hidden = !project.dataset.instagram;
+    modalInstagram.href = project.dataset.instagram || '#';
+  }
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
